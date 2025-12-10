@@ -9,26 +9,35 @@ body {
 /* ===== TOPO ===== */
 .top {
     background: #fffdfd;
-    color: #fff;
+    color: #000; /* cor preta para contraste no fundo claro */
     padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
     text-align: center;
-    position: relative;
     font-weight: 700;
     font-size: 1.2rem;
+    position: relative;
 }
 
-.top img { width: 70px; height: auto; border-radius: 4px; }
+/* Logo */
+.top img {
+    width: 70px;
+    height: auto;
+    border-radius: 4px;
+}
 
-h1{
+/* Título */
+.top h1 {
     color: #E1251B;
+    flex: 1 1 100%;
+    margin: 0;
 }
 
-/* Botão Voltar */
+/* Botão voltar */
 .btn-voltar {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
     background: #E1251B;
     padding: 8px 12px;
     color: white;
@@ -37,6 +46,10 @@ h1{
     font-weight: 700;
     border: 2px solid #000;
     transition: 0.2s;
+    position: static; /* botão no fluxo natural */
+    order: 3; /* aparece depois do h1 no desktop */
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
 .btn-voltar:hover {
@@ -90,7 +103,30 @@ footer {
     text-align: center;
     padding: 18px;
     background: #ffffff;
-    color: #fff;
+    color: #000; /* texto legível */
     margin-top: 30px;
     font-weight: 500;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 600px) {
+    .top {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-voltar {
+        order: 1; /* botão volta para o topo */
+        align-self: flex-start; /* alinhado à esquerda */
+        width: fit-content;
+    }
+
+    .top img {
+        order: 2;
+    }
+
+    .top h1 {
+        order: 3;
+        text-align: center;
+    }
 }
