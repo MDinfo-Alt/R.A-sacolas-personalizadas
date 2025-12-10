@@ -1,0 +1,96 @@
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background: #fff6ed; /* leve tom kraft */
+    color: #000000;
+}
+
+/* ===== TOPO ===== */
+.top {
+    background: #fffdfd;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.top img { width: 70px; height: auto; border-radius: 4px; }
+
+h1{
+    color: #E1251B;
+}
+
+/* Botão Voltar */
+.btn-voltar {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #E1251B;
+    padding: 8px 12px;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 2px solid #000;
+    transition: 0.2s;
+}
+
+.btn-voltar:hover {
+    background: #ff463b;
+}
+
+/* ===== GRID DO CATÁLOGO ===== */
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    padding: 25px;
+}
+
+/* ===== ITENS ===== */
+.item {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    border: 2px solid #D1A56C; /* Kraft */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: 0.25s;
+}
+
+.item:hover {
+    transform: translateY(-4px);
+    border-color: #E1251B;
+}
+
+.item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.item h3 {
+    margin: 10px 0 5px;
+    color: #000;
+    font-weight: 800;
+}
+
+.item p {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+    text-align: center;
+    padding: 18px;
+    background: #ffffff;
+    color: #fff;
+    margin-top: 30px;
+    font-weight: 500;
+}
