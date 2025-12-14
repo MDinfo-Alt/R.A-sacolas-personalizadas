@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Catálogo de Sacolas Personalizadas | R.A Sacolas</title>
+  <meta name="description" content="Catálogo de sacolas personalizadas em papel kraft, TNT, plástico e boutique. Solicite orçamento com a R.A Sacolas.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="catalogo.css">
+</head>
+
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="catalog-hero">
+  <div class="container hero-top">
+    <a href="index.html" class="btn-voltar">← Voltar</a>
+    <h1>Catálogo de Sacolas Personalizadas</h1>
+    <p>Escolha o modelo ideal e fale com um de nossos vendedores</p>
+  </div>
+</section>
+
+<!-- ===== CATÁLOGO ===== -->
+<section class="catalog">
+  <div class="container">
+
+    <div class="catalog-grid">
+
+      <div class="product-card">
+        <img src="kraft.jpg" alt="Sacola em papel kraft personalizada">
+        <h3>Sacola Kraft</h3>
+        <p>Modelo ecológico, resistente e elegante.</p>
+        <button class="btn-catalog" onclick="openSeller('Sacola Kraft')">
+          Solicitar orçamento
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="tnt.jpg" alt="Sacola em TNT personalizada">
+        <h3>Sacola em TNT</h3>
+        <p>Ótima para eventos e reutilização.</p>
+        <button class="btn-catalog" onclick="openSeller('Sacola em TNT')">
+          Solicitar orçamento
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="plastico.webp" alt="Sacola plástica personalizada">
+        <h3>Sacola Plástica</h3>
+        <p>Versátil e econômica para grandes volumes.</p>
+        <button class="btn-catalog" onclick="openSeller('Sacola Plástica')">
+          Solicitar orçamento
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="sacola-logo.jpg" alt="Sacola boutique personalizada">
+        <h3>Sacola Boutique</h3>
+        <p>Acabamento premium que valoriza sua marca.</p>
+        <button class="btn-catalog" onclick="openSeller('Sacola Boutique')">
+          Solicitar orçamento
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== MODAL VENDEDORES ===== -->
+<div class="seller-modal" id="sellerModal" aria-hidden="true">
+  <div class="seller-box">
+    <h3>Escolha um vendedor</h3>
+
+    <a id="seller1" class="seller-btn" target="_blank" rel="noopener">Bruno</a>
+    <a id="seller2" class="seller-btn" target="_blank" rel="noopener">Robson</a>
+    <a id="seller3" class="seller-btn" target="_blank" rel="noopener">Bruna</a>
+
+    <button class="seller-close" onclick="closeSeller()">Cancelar</button>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p>
+      © 2025 R.A Sacolas Personalizadas · Desenvolvido por
+      <strong>MD Informática</strong>
+    </p>
+  </div>
+</footer>
+
+<script src="catalogo.js"></script>
+</body>
+</html>
