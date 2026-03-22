@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo | R.A Sacolas Personalizadas</title>
+  <meta name="description" content="Catálogo de sacolas personalizadas em papel kraft, TNT, plástico e boutique. Solicite orçamento com a R.A Sacolas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --red:    #f01e0f;
+      --red2:   #c21509;
+      --green:  #128C7E;
+      --wa:     #25D366;
+      --ink:    #111;
+      --off:    #f7f5f2;
+      --warm:   #ede9e3;
+      --muted:  #777;
+      --border: rgba(0,0,0,0.09);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off); color: var(--ink); overflow-x: hidden; }
+
+    /* ── TICKER ── */
+    .ticker { background: var(--ink); color: #fff; padding: 9px 0; overflow: hidden; white-space: nowrap; }
+    .ticker-inner { display: inline-flex; animation: ticker 28s linear infinite; }
+    .ticker-item { padding: 0 32px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; opacity: .6; }
+    .ticker-item b { color: var(--red); font-weight: 500; opacity: 1; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(247,245,242,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1320px; margin: auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { height: 44px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-back {
+      display: flex; align-items: center; gap: 6px;
+      padding: 9px 18px; border-radius: 999px;
+      border: 1.5px solid var(--border);
+      color: var(--ink); font-size: 13px; font-weight: 500;
+      text-decoration: none; background: #fff;
+      transition: border-color .2s, background .2s;
+    }
+    .nav-back:hover { border-color: var(--ink); background: var(--ink); color: #fff; }
+    .nav-cta {
+      padding: 9px 22px; border-radius: 999px;
+      background: var(--red); color: #fff;
+      font-size: 13px; font-weight: 500;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--red2); }
+    @media(max-width:600px){ .nav-inner{padding:0 16px;} .nav-back span{display:none;} }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      padding: 80px 40px 70px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: 'CATÁLOGO';
+      position: absolute; right: -20px; bottom: -40px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 220px; color: rgba(255,255,255,.03);
+      pointer-events: none; white-space: nowrap;
+    }
+    .hero-inner { max-width: 1320px; margin: auto; position: relative; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.45); margin-bottom: 24px;
+    }
+    .hero-h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 10vw, 120px);
+      line-height: .92; color: #fff;
+    }
+    .hero-h1 .red { color: var(--red); }
+    .hero-sub { color: rgba(255,255,255,.45); font-size: 15px; font-weight: 300; margin-top: 20px; max-width: 480px; line-height: 1.7; }
+
+    /* Category pills */
+    .cat-nav {
+      max-width: 1320px; margin: 0 auto;
+      padding: 24px 40px;
+      display: flex; gap: 10px; flex-wrap: wrap;
+      background: var(--warm);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 64px; z-index: 100;
+    }
+    .cat-pill {
+      padding: 8px 18px; border-radius: 999px;
+      font-size: 13px; font-weight: 500;
+      border: 1.5px solid var(--border);
+      background: #fff; color: var(--ink);
+      cursor: pointer; text-decoration: none;
+      transition: all .2s;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--red); border-color: var(--red); color: #fff;
+    }
+    @media(max-width:600px){ .cat-nav{padding:16px 16px; top:56px;} }
+
+    /* ── CATALOG BODY ── */
+    .catalog-body { max-width: 1320px; margin: 0 auto; padding: 0 40px 80px; }
+
+    /* ── SECTION ── */
+    .cat-section { padding-top: 80px; }
+    .cat-section-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 36px;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .sec-eyebrow { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--red); font-weight: 500; margin-bottom: 8px; }
+    .sec-h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: .95; letter-spacing: .01em;
+    }
+    .sec-count { font-size: 13px; color: var(--muted); font-weight: 300; }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── CARD ── */
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.09); }
+
+    .card-img {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4; background: var(--warm);
+      cursor: zoom-in;
+    }
+    .card-img img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .product-card:hover .card-img img { transform: scale(1.06); }
+    .card-zoom-hint {
+      position: absolute; bottom: 10px; right: 10px;
+      background: rgba(0,0,0,.5); color: #fff;
+      font-size: 11px; padding: 4px 10px; border-radius: 999px;
+      opacity: 0; transition: opacity .2s;
+    }
+    .product-card:hover .card-zoom-hint { opacity: 1; }
+
+    .card-body { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    .card-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px; letter-spacing: .04em; color: var(--ink);
+    }
+    .card-desc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; flex: 1; }
+    .card-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 16px; border-radius: 8px;
+      background: var(--red); color: #fff;
+      font-size: 13px; font-weight: 500;
+      border: none; cursor: pointer;
+      transition: background .2s, transform .2s;
+      margin-top: 6px;
+    }
+    .card-btn:hover { background: var(--red2); transform: translateY(-1px); }
+    .card-btn svg { width: 14px; height: 14px; fill: #fff; flex-shrink: 0; }
+
+    /* ── DIVIDER ── */
+    .cat-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 80px 0 0;
+    }
+
+    /* ── PAYMENT BAND ── */
+    .pay-band {
+      background: var(--ink); padding: 60px 40px; margin-top: 80px;
+    }
+    .pay-band-inner {
+      max-width: 1320px; margin: auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .pay-band h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 56px); color: #fff; line-height: .95; margin-bottom: 12px;
+    }
+    .pay-band p { color: rgba(255,255,255,.45); font-size: 15px; font-weight: 300; }
+    .pay-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pay-pill {
+      padding: 11px 20px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.8); font-size: 14px; font-weight: 400;
+      background: rgba(255,255,255,.05);
+    }
+    @media(max-width:800px){ .pay-band-inner{grid-template-columns:1fr;} .pay-band{padding:40px 20px;} }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #0a0a0a; padding: 36px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer img { height: 34px; opacity: .4; }
+    .footer p { font-size: 12px; color: rgba(255,255,255,.25); }
+    @media(max-width:600px){ .footer{flex-direction:column;align-items:center;text-align:center;padding:28px 20px;} }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.7);
+      display: none; align-items: center; justify-content: center;
+      z-index: 999; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; animation: fadeIn .2s ease; }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    .modal-box {
+      background: #fff; border-radius: 20px;
+      padding: 36px 32px; width: 100%; max-width: 360px;
+      animation: slideUp .25s ease;
+    }
+    @keyframes slideUp { from{transform:translateY(20px);opacity:0} to{transform:none;opacity:1} }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px; letter-spacing: .04em; margin-bottom: 6px;
+    }
+    .modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; font-weight: 300; }
+    .modal-product {
+      display: inline-block;
+      background: rgba(240,30,15,.08);
+      color: var(--red);
+      font-size: 12px; font-weight: 600;
+      padding: 4px 12px; border-radius: 999px;
+      margin-bottom: 20px; letter-spacing: .04em;
+    }
+    .modal-sellers { display: flex; flex-direction: column; gap: 10px; }
+    .seller-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff; text-decoration: none; color: var(--ink);
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .seller-btn:hover { background: rgba(37,211,102,.06); border-color: rgba(37,211,102,.3); transform: translateX(4px); }
+    .seller-btn-l { display: flex; align-items: center; gap: 12px; }
+    .seller-ava {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-family: 'Bebas Neue', sans-serif; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .seller-name { font-weight: 500; font-size: 14px; }
+    .seller-label { font-size: 11px; color: var(--muted); }
+    .seller-wa {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--wa); display: flex; align-items: center; justify-content: center;
+    }
+    .seller-wa svg { width: 14px; height: 14px; fill: #fff; }
+    .modal-cancel {
+      width: 100%; margin-top: 14px; padding: 12px;
+      border: none; background: none;
+      font-size: 13px; color: var(--muted); cursor: pointer;
+      border-radius: 8px; transition: background .2s;
+    }
+    .modal-cancel:hover { background: var(--warm); }
+
+    /* ── ZOOM ── */
+    .zoom-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.92);
+      display: none; align-items: center; justify-content: center;
+      z-index: 1000; cursor: zoom-out;
+    }
+    .zoom-overlay.open { display: flex; animation: fadeIn .2s ease; }
+    .zoom-overlay img {
+      max-width: 90vw; max-height: 90vh;
+      border-radius: 12px; object-fit: contain;
+    }
+    .zoom-close {
+      position: absolute; top: 20px; right: 28px;
+      font-size: 32px; color: rgba(255,255,255,.6);
+      cursor: pointer; background: none; border: none;
+      transition: color .2s;
+    }
+    .zoom-close:hover { color: #fff; }
+
+    /* ── WA FLOAT ── */
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 998; }
+    .wa-popup {
+      display: none; flex-direction: column; gap: 2px;
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.15);
+      padding: 8px; margin-bottom: 12px; min-width: 200px;
+      border: 1px solid var(--border);
+    }
+    .wa-popup.open { display: flex; animation: slideUp .2s ease; }
+    .wa-popup-head { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 8px 10px 10px; }
+    .wa-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; border-radius: 8px;
+      text-decoration: none; color: var(--ink); transition: background .15s;
+    }
+    .wa-link:hover { background: #f3f3f3; }
+    .wa-mini-av {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-family: 'Bebas Neue', sans-serif; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .wa-name { font-weight: 500; font-size: 13px; }
+    .wa-lbl { font-size: 11px; color: var(--muted); }
+    .wa-fab {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--wa); border: none; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(37,211,102,.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-fab:hover { transform: scale(1.1); }
+    .wa-fab svg { width: 26px; height: 26px; fill: #fff; }
+
+    /* ── BTT ── */
+    #btt {
+      position: fixed; bottom: 28px; left: 28px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #fff; border: 1px solid var(--border);
+      font-size: 16px; cursor: pointer;
+      opacity: 0; visibility: hidden; transition: all .3s; z-index: 998;
+    }
+    #btt.on { opacity: 1; visibility: visible; }
+    #btt:hover { background: var(--ink); color: #fff; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media(max-width:640px){ .catalog-body{padding:0 16px 60px;} .cat-section{padding-top:60px;} }
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item">Kraft</span>
+    <span class="ticker-item"><b>Entrega para todo Brasil</b></span>
+    <span class="ticker-item">Artesanal</span>
+    <span class="ticker-item"><b>Até 6x sem juros</b></span>
+    <span class="ticker-item">Plástico</span>
+    <span class="ticker-item"><b>Atendimento humanizado</b></span>
+    <span class="ticker-item">Boutique</span>
+    <span class="ticker-item"><b>Impressão premium</b></span>
+    <span class="ticker-item">Condicional</span>
+    <span class="ticker-item"><b>+1000 clientes</b></span>
+    <span class="ticker-item">Delivery</span>
+    <span class="ticker-item"><b>Camiseta</b></span>
+    <span class="ticker-item">Kraft</span>
+    <span class="ticker-item"><b>Entrega para todo Brasil</b></span>
+    <span class="ticker-item">Artesanal</span>
+    <span class="ticker-item"><b>Até 6x sem juros</b></span>
+    <span class="ticker-item">Plástico</span>
+    <span class="ticker-item"><b>Atendimento humanizado</b></span>
+    <span class="ticker-item">Boutique</span>
+    <span class="ticker-item"><b>Impressão premium</b></span>
+    <span class="ticker-item">Condicional</span>
+    <span class="ticker-item"><b>+1000 clientes</b></span>
+    <span class="ticker-item">Delivery</span>
+    <span class="ticker-item"><b>Camiseta</b></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <img src="logoRA-removebg-preview.png" class="nav-logo" alt="R.A Sacolas">
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">← <span>Voltar</span></a>
+      <a href="#contato-modal" class="nav-cta" onclick="openSeller('Orçamento Geral'); return false;">Orçamento</a>
+    </div>
+  </div>
+</nav>
+
+<!-- CATEGORY NAV -->
+<div class="cat-nav">
+  <a href="#vazadas"    class="cat-pill">Vazadas</a>
+  <a href="#kraft"      class="cat-pill">Kraft</a>
+  <a href="#camiseta"   class="cat-pill">Camiseta</a>
+  <a href="#delivery"   class="cat-pill">Delivery</a>
+  <a href="#artesanal"  class="cat-pill">Artesanal</a>
+  <a href="#condicional" class="cat-pill">Condicional</a>
+  <a href="#shop"       class="cat-pill">Shop</a>
+  <a href="#alcafita"   class="cat-pill">Alça Fita</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner reveal">
+    <div class="hero-eyebrow">R.A Sacolas Personalizadas</div>
+    <h1 class="hero-h1">CATÁLOGO<br><span class="red">COMPLETO</span></h1>
+    <p class="hero-sub">Escolha o modelo ideal para a sua marca e solicite um orçamento direto com nossos vendedores.</p>
+  </div>
+</section>
+
+<!-- CATALOG BODY -->
+<div class="catalog-body">
+
+  <!-- VAZADAS -->
+  <section class="cat-section reveal" id="vazadas">
+    <div class="cat-section-head">
+      <div>
+        <div class="sec-eyebrow">Plástico</div>
+        <h2 class="sec-h2">Sacolas Vazadas</h2>
+      </div>
+      <span class="sec-count">4 modelos</span>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('vazada1.jpeg')">
+          <img src="vazada1.jpeg" alt="Sacola Vazada 1" loading="lazy">
+          <span class="card-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Sacola Vazada</div>
+          <div class="card-desc">Leve, prática e com excelente visual. Ideal para o dia a dia.</div>
+          <button class="card-btn" onclick="openSeller('Sacola Vazada')">
+            <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+            Solicitar orçamento
+          </button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('vazada2.jpeg')">
+          <img src="vazada2.jpeg" alt="Sacola Vazada 2" loading="lazy">
+          <span class="card-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Sacola Vazada</div>
+          <div class="card-desc">Leve, prática e com excelente visual. Ideal para o dia a dia.</div>
+          <button class="card-btn" onclick="openSeller('Sacola Vazada')">
+            <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+            Solicitar orçamento
+          </button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('vazada3.jpeg')">
+          <img src="vazada3.jpeg" alt="Sacola Vazada 3" loading="lazy">
+          <span class="card-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Sacola Vazada</div>
+          <div class="card-desc">Leve, prática e com excelente visual. Ideal para o dia a dia.</div>
+          <button class="card-btn" onclick="openSeller('Sacola Vazada')">
+            <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+            Solicitar orçamento
+          </button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('vazada4.jpeg')">
+          <img src="vazada4.jpeg" alt="Sacola Vazada 4" loading="lazy">
+          <span class="card-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Sacola Vazada</div>
+          <div class="card-desc">Leve, prática e com excelente visual. Ideal para o dia a dia.</div>
+          <button class="card-btn" onclick="openSeller('Sacola Vazada')">
+            <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+            Solicitar orçamento
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="cat-divider">
+
+  <!-- KRAFT -->
+  <section class="cat-section reveal" id="kraft">
+    <div class="cat-section-head">
+      <div>
+        <div class="sec-eyebrow">Ecológico</div>
+        <h2 class="sec-h2">Sacolas Kraft</h2>
+      </div>
+      <span class="sec-count">5 modelos</span>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('krft1.jpeg')"><img src="krft1.jpeg" alt="Kraft 1" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div>
+        <div class="card-body"><div class="card-name">Sacola Kraft</div><div class="card-desc">Modelo ecológico, resistente e elegante para qualquer marca.</div><button class="card-btn" onclick="openSeller('Sacola Kraft')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('kraft2.jpeg')"><img src="kraft2.jpeg" alt="Kraft 2" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div>
+        <div class="card-body"><div class="card-name">Sacola Kraft</div><div class="card-desc">Modelo ecológico, resistente e elegante para qualquer marca.</div><button class="card-btn" onclick="openSeller('Sacola Kraft')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('kraft3.jpeg')"><img src="kraft3.jpeg" alt="Kraft 3" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div>
+        <div class="card-body"><div class="card-name">Sacola Kraft</div><div class="card-desc">Modelo ecológico, resistente e elegante para qualquer marca.</div><button class="card-btn" onclick="openSeller('Sacola Kraft')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('kraft4.jpeg')"><img src="kraft4.jpeg" alt="Kraft 4" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div>
+        <div class="card-body"><div class="card-name">Sacola Kraft</div><div class="card-desc">Modelo ecológico, resistente e elegante para qualquer marca.</div><button class="card-btn" onclick="openSeller('Sacola Kraft')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" onclick="openZoom('kraft5.jpeg')"><img src="kraft5.jpeg" alt="Kraft 5" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div>
+        <div class="card-body"><div class="card-name">Sacola Kraft</div><div class="card-desc">Modelo ecológico, resistente e elegante para qualquer marca.</div><button class="card-btn" onclick="openSeller('Sacola Kraft')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="cat-divider">
+
+  <!-- CAMISETA -->
+  <section class="cat-section reveal" id="camiseta">
+    <div class="cat-section-head">
+      <div><div class="sec-eyebrow">Varejo</div><h2 class="sec-h2">Sacolas Camiseta</h2></div>
+      <span class="sec-count">5 modelos</span>
+    </div>
+    <div class="product-grid">
+      <div class="product-card"><div class="card-img" onclick="openZoom('camiseta1.jpeg')"><img src="camiseta1.jpeg" alt="Camiseta 1" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Camiseta</div><div class="card-desc">Modelo econômico e muito utilizado no varejo. Custo-benefício imbatível.</div><button class="card-btn" onclick="openSeller('Sacola Camiseta')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('camiseta2.jpeg')"><img src="camiseta2.jpeg" alt="Camiseta 2" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Camiseta</div><div class="card-desc">Modelo econômico e muito utilizado no varejo. Custo-benefício imbatível.</div><button class="card-btn" onclick="openSeller('Sacola Camiseta')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('camiseta3.jpeg')"><img src="camiseta3.jpeg" alt="Camiseta 3" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Camiseta</div><div class="card-desc">Modelo econômico e muito utilizado no varejo. Custo-benefício imbatível.</div><button class="card-btn" onclick="openSeller('Sacola Camiseta')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('camiseta4.jpeg')"><img src="camiseta4.jpeg" alt="Camiseta 4" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Camiseta</div><div class="card-desc">Modelo econômico e muito utilizado no varejo. Custo-benefício imbatível.</div><button class="card-btn" onclick="openSeller('Sacola Camiseta')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('camiseta5.jpeg')"><img src="camiseta5.jpeg" alt="Camiseta 5" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Camiseta</div><div class="card-desc">Modelo econômico e muito utilizado no varejo. Custo-benefício imbatível.</div><button class="card-btn" onclick="openSeller('Sacola Camiseta')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+    </div>
+  </section>
+
+  <hr class="cat-divider">
+
+  <!-- DELIVERY -->
+  <section class="cat-section reveal" id="delivery">
+    <div class="cat-section-head"><div><div class="sec-eyebrow">Food & Delivery</div><h2 class="sec-h2">Kraft Delivery</h2></div><span class="sec-count">4 modelos</span></div>
+    <div class="product-grid">
+      <div class="product-card"><div class="card-img" onclick="openZoom('delivery1.jpeg')"><img src="delivery1.jpeg" alt="Delivery 1" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Kraft Delivery</div><div class="card-desc">Ideal para delivery de alimentos e refeições. Reforçada e com visual premium.</div><button class="card-btn" onclick="openSeller('Sacola Kraft Delivery')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('delivery2.jpeg')"><img src="delivery2.jpeg" alt="Delivery 2" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Kraft Delivery</div><div class="card-desc">Ideal para delivery de alimentos e refeições. Reforçada e com visual premium.</div><button class="card-btn" onclick="openSeller('Sacola Kraft Delivery')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('delivery3.jpeg')"><img src="delivery3.jpeg" alt="Delivery 3" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Kraft Delivery</div><div class="card-desc">Ideal para delivery de alimentos e refeições. Reforçada e com visual premium.</div><button class="card-btn" onclick="openSeller('Sacola Kraft Delivery')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('delivery4.jpeg')"><img src="delivery4.jpeg" alt="Delivery 4" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Kraft Delivery</div><div class="card-desc">Ideal para delivery de alimentos e refeições. Reforçada e com visual premium.</div><button class="card-btn" onclick="openSeller('Sacola Kraft Delivery')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+    </div>
+  </section>
+
+  <hr class="cat-divider">
+
+  <!-- ARTESANAL -->
+  <section class="cat-section reveal" id="artesanal">
+    <div class="cat-section-head"><div><div class="sec-eyebrow">Premium</div><h2 class="sec-h2">Sacolas Artesanais</h2></div><span class="sec-count">4 modelos</span></div>
+    <div class="product-grid">
+      <div class="product-card"><div class="card-img" onclick="openZoom('artesanal1.jpeg')"><img src="artesanal1.jpeg" alt="Artesanal 1" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Artesanal</div><div class="card-desc">Visual diferenciado com acabamento manual. Exclusividade e charme em cada detalhe.</div><button class="card-btn" onclick="openSeller('Sacola Artesanal')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('artesanal2.jpeg')"><img src="artesanal2.jpeg" alt="Artesanal 2" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Artesanal</div><div class="card-desc">Visual diferenciado com acabamento manual. Exclusividade e charme em cada detalhe.</div><button class="card-btn" onclick="openSeller('Sacola Artesanal')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('artesanal3.jpeg')"><img src="artesanal3.jpeg" alt="Artesanal 3" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Artesanal</div><div class="card-desc">Visual diferenciado com acabamento manual. Exclusividade e charme em cada detalhe.</div><button class="card-btn" onclick="openSeller('Sacola Artesanal')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('artesanal4.jpeg')"><img src="artesanal4.jpeg" alt="Artesanal 4" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Artesanal</div><div class="card-desc">Visual diferenciado com acabamento manual. Exclusividade e charme em cada detalhe.</div><button class="card-btn" onclick="openSeller('Sacola Artesanal')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+    </div>
+  </section>
+
+  <hr class="cat-divider">
+
+  <!-- CONDICIONAL -->
+  <section class="cat-section reveal" id="condicional">
+    <div class="cat-section-head"><div><div class="sec-eyebrow">Moda & Acessórios</div><h2 class="sec-h2">Bolsa Condicional</h2></div><span class="sec-count">3 modelos</span></div>
+    <div class="product-grid">
+      <div class="product-card"><div class="card-img" onclick="openZoom('condicional1.jpeg')"><img src="condicional1.jpeg" alt="Condicional 1" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Bolsa Condicional</div><div class="card-desc">Ideal para lojas de roupas e acessórios. Perfeita para provadores.</div><button class="card-btn" onclick="openSeller('Bolsa Condicional')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('condicional2.jpeg')"><img src="condicional2.jpeg" alt="Condicional 2" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Bolsa Condicional</div><div class="card-desc">Ideal para lojas de roupas e acessórios. Perfeita para provadores.</div><button class="card-btn" onclick="openSeller('Bolsa Condicional')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('condicional3.jpeg')"><img src="condicional3.jpeg" alt="Condicional 3" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Bolsa Condicional</div><div class="card-desc">Ideal para lojas de roupas e acessórios. Perfeita para provadores.</div><button class="card-btn" onclick="openSeller('Bolsa Condicional')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+    </div>
+  </section>
+
+  <hr class="cat-divider">
+
+  <!-- SHOP -->
+  <section class="cat-section reveal" id="shop">
+    <div class="cat-section-head"><div><div class="sec-eyebrow">Design</div><h2 class="sec-h2">Modelo Shop</h2></div><span class="sec-count">1 modelo</span></div>
+    <div class="product-grid" style="max-width:300px;">
+      <div class="product-card"><div class="card-img" onclick="openZoom('shop.jpeg')"><img src="shop.jpeg" alt="Shop" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Sacola Shop</div><div class="card-desc">Design moderno para lojas e marcas que querem se destacar.</div><button class="card-btn" onclick="openSeller('Sacola Modelo Shop')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+    </div>
+  </section>
+
+  <hr class="cat-divider">
+
+  <!-- ALÇA FITA -->
+  <section class="cat-section reveal" id="alcafita">
+    <div class="cat-section-head"><div><div class="sec-eyebrow">Sofisticado</div><h2 class="sec-h2">Alça Fita</h2></div><span class="sec-count">5 modelos</span></div>
+    <div class="product-grid">
+      <div class="product-card"><div class="card-img" onclick="openZoom('alçafita1.jpeg')"><img src="alçafita1.jpeg" alt="Alça Fita 1" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Alça Fita</div><div class="card-desc">Acabamento sofisticado e resistente. Ideal para marcas premium.</div><button class="card-btn" onclick="openSeller('Sacola Alça Fita')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('alcafita2.jpeg')"><img src="alcafita2.jpeg" alt="Alça Fita 2" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Alça Fita</div><div class="card-desc">Acabamento sofisticado e resistente. Ideal para marcas premium.</div><button class="card-btn" onclick="openSeller('Sacola Alça Fita')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('alcafita3.jpeg')"><img src="alcafita3.jpeg" alt="Alça Fita 3" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Alça Fita</div><div class="card-desc">Acabamento sofisticado e resistente. Ideal para marcas premium.</div><button class="card-btn" onclick="openSeller('Sacola Alça Fita')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('alcafita4.jpeg')"><img src="alcafita4.jpeg" alt="Alça Fita 4" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Alça Fita</div><div class="card-desc">Acabamento sofisticado e resistente. Ideal para marcas premium.</div><button class="card-btn" onclick="openSeller('Sacola Alça Fita')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+      <div class="product-card"><div class="card-img" onclick="openZoom('alcafita5.jpeg')"><img src="alcafita5.jpeg" alt="Alça Fita 5" loading="lazy"><span class="card-zoom-hint">🔍 Ampliar</span></div><div class="card-body"><div class="card-name">Alça Fita</div><div class="card-desc">Acabamento sofisticado e resistente. Ideal para marcas premium.</div><button class="card-btn" onclick="openSeller('Sacola Alça Fita')"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>Solicitar orçamento</button></div></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- PAYMENT BAND -->
+<div class="pay-band">
+  <div class="pay-band-inner">
+    <div>
+      <h2>Formas de<br>pagamento</h2>
+      <p>Facilitamos seu pedido com as opções mais práticas.</p>
+    </div>
+    <div class="pay-pills">
+      <span class="pay-pill">💵 Dinheiro</span>
+      <span class="pay-pill">📱 Pix</span>
+      <span class="pay-pill">💳 Cartão até 6x</span>
+      <span class="pay-pill">🔗 Link de pagamento</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <img src="logoRA-removebg-preview.png" alt="R.A Sacolas">
+  <p>© 2025 R.A Sacolas Personalizadas · Desenvolvido por <strong style="color:rgba(255,255,255,.35)">MD Informática</strong></p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-title">Falar com vendedor</div>
+    <div class="modal-sub">Escolha quem vai te atender agora</div>
+    <div class="modal-product" id="modal-product">Produto</div>
+    <div class="modal-sellers">
+      <a class="seller-btn" id="s1" target="_blank" rel="noopener">
+        <div class="seller-btn-l"><div class="seller-ava">BR</div><div><div class="seller-name">Bruno</div><div class="seller-label">WhatsApp · Vendedor</div></div></div>
+        <div class="seller-wa"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg></div>
+      </a>
+      <a class="seller-btn" id="s2" target="_blank" rel="noopener">
+        <div class="seller-btn-l"><div class="seller-ava">RO</div><div><div class="seller-name">Robson</div><div class="seller-label">WhatsApp · Vendedor</div></div></div>
+        <div class="seller-wa"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg></div>
+      </a>
+      <a class="seller-btn" id="s3" target="_blank" rel="noopener">
+        <div class="seller-btn-l"><div class="seller-ava">BN</div><div><div class="seller-name">Bruna</div><div class="seller-label">WhatsApp · Vendedora</div></div></div>
+        <div class="seller-wa"><svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg></div>
+      </a>
+    </div>
+    <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+  </div>
+</div>
+
+<!-- ZOOM -->
+<div class="zoom-overlay" id="zoom" onclick="closeZoom()">
+  <button class="zoom-close" onclick="closeZoom()">×</button>
+  <img id="zoom-img" src="" alt="">
+</div>
+
+<!-- WA FLOAT -->
+<div class="wa-float">
+  <div class="wa-popup" id="wa-popup">
+    <div class="wa-popup-head">Fale com um vendedor</div>
+    <a class="wa-link" href="https://wa.me/5544984443735?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank"><div class="wa-mini-av">BR</div><div><div class="wa-name">Bruno</div><div class="wa-lbl">WhatsApp</div></div></a>
+    <a class="wa-link" href="https://wa.me/5544991048359?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank"><div class="wa-mini-av">RO</div><div><div class="wa-name">Robson</div><div class="wa-lbl">WhatsApp</div></div></a>
+    <a class="wa-link" href="https://wa.me/5544984543447?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank"><div class="wa-mini-av">BN</div><div><div class="wa-name">Bruna</div><div class="wa-lbl">WhatsApp</div></div></a>
+  </div>
+  <button class="wa-fab" id="wa-fab" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+  </button>
+</div>
+
+<button id="btt" aria-label="Voltar ao topo">↑</button>
+
+<script>
+  const WA_MSG = encodeURIComponent('Olá! Gostaria de um orçamento de sacolas personalizadas. ');
+  const SELLERS = [
+    { id:'s1', num:'5544984443735' },
+    { id:'s2', num:'5544991048359' },
+    { id:'s3', num:'5544984543447' },
+  ];
+
+  function openSeller(product) {
+    document.getElementById('modal-product').textContent = product;
+    SELLERS.forEach(s => {
+      document.getElementById(s.id).href = `https://wa.me/${s.num}?text=${WA_MSG}Produto: ${encodeURIComponent(product)}`;
+    });
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal')) closeModal();
+  });
+
+  function openZoom(src) {
+    document.getElementById('zoom-img').src = src;
+    document.getElementById('zoom').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeZoom() {
+    document.getElementById('zoom').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // WA float
+  document.getElementById('wa-fab').addEventListener('click', () => {
+    document.getElementById('wa-popup').classList.toggle('open');
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.wa-float')) document.getElementById('wa-popup').classList.remove('open');
+  });
+
+  // BTT
+  const btt = document.getElementById('btt');
+  window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400));
+  btt.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+  // Reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Active cat pill on scroll
+  const sections = document.querySelectorAll('.cat-section[id]');
+  const pills = document.querySelectorAll('.cat-pill');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    pills.forEach(p => p.classList.toggle('active', p.getAttribute('href') === '#'+cur));
+  });
+</script>
+</body>
+</html>

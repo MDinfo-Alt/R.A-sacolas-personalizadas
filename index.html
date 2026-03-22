@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>R.A Sacolas Personalizadas</title>
+  <meta name="description" content="Sacolas personalizadas em papel kraft, boutique, TNT e plástico. Impressão de alta qualidade e entrega para todo o Brasil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --red:      #f01e0f;
+      --red2:     #c21509;
+      --green:    #128C7E;
+      --wa:       #25D366;
+      --ink:      #111;
+      --off:      #f7f5f2;
+      --warm:     #ede9e3;
+      --muted:    #777;
+      --border:   rgba(0,0,0,0.09);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off); color: var(--ink); overflow-x: hidden; }
+
+    /* ──────────────────────────────────────────
+       TICKER
+    ────────────────────────────────────────── */
+    .ticker {
+      background: var(--ink);
+      color: #fff;
+      padding: 9px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-flex;
+      gap: 0;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-item {
+      padding: 0 32px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    .ticker-item b { color: var(--red); font-weight: 500; opacity: 1; }
+    @keyframes ticker { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+    /* ──────────────────────────────────────────
+       NAV
+    ────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,245,242,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    .nav.shadowed { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .nav-inner {
+      max-width: 1320px; margin: auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { height: 44px; width: auto; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-ig {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 999px;
+      font-size: 13px; font-weight: 500;
+      color: #fff; text-decoration: none;
+      background: linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#4f5bd5);
+      transition: opacity .2s, transform .2s;
+    }
+    .nav-ig:hover { opacity: .85; transform: translateY(-1px); }
+    .nav-ig svg { width: 15px; height: 15px; fill: #fff; }
+    .nav-cta {
+      padding: 9px 22px; border-radius: 999px;
+      background: var(--red); color: #fff;
+      font-size: 13px; font-weight: 500;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--red2); transform: translateY(-1px); }
+    @media(max-width:600px){
+      .nav-inner { padding: 0 20px; }
+      .nav-ig span, .nav-cta span { display: none; }
+    }
+
+    /* ──────────────────────────────────────────
+       HERO
+    ────────────────────────────────────────── */
+    .hero {
+      max-width: 1320px; margin: 0 auto;
+      padding: 80px 40px 60px;
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      gap: 60px;
+      align-items: end;
+    }
+
+    .hero-left {}
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 28px;
+      background: #fff;
+    }
+    .hero-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--wa); animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
+
+    .hero-h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 10vw, 130px);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+    .hero-h1 .red { color: var(--red); }
+    .hero-h1 .outline {
+      -webkit-text-stroke: 2px var(--ink);
+      color: transparent;
+    }
+
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 16px; line-height: 1.7;
+      color: var(--muted); max-width: 440px;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap; align-items: center;
+    }
+
+    .btn-red {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px; border-radius: 6px;
+      background: var(--red); color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px; letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(240,30,15,0.3);
+    }
+    .btn-red:hover { background: var(--red2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(240,30,15,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 6px;
+      border: 1.5px solid var(--ink);
+      color: var(--ink); font-size: 14px; font-weight: 500;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .btn-ghost:hover { background: var(--ink); color: #fff; }
+
+    .hero-stats {
+      display: flex; gap: 36px; margin-top: 52px;
+      padding-top: 36px; border-top: 1px solid var(--border);
+    }
+    .stat-n {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 44px; color: var(--red); line-height: 1;
+    }
+    .stat-l { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+
+    /* Right panel */
+    .hero-right {
+      position: relative;
+    }
+    .hero-img-wrap {
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+      aspect-ratio: 3/4;
+    }
+    .hero-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform 8s ease;
+    }
+    .hero-img-wrap:hover img { transform: scale(1.04); }
+
+    .hero-pill {
+      position: absolute; top: 24px; left: -32px;
+      background: #fff; border-radius: 12px;
+      padding: 14px 20px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+      font-size: 13px; font-weight: 500;
+      display: flex; align-items: center; gap: 10px;
+      white-space: nowrap;
+    }
+    .hero-pill .ava {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 15px; display: flex;
+      align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-pill-label { font-size: 11px; color: var(--muted); }
+
+    /* ──────────────────────────────────────────
+       MATERIAL STRIP
+    ────────────────────────────────────────── */
+    .strip {
+      background: var(--ink); color: rgba(255,255,255,0.45);
+      padding: 18px 40px;
+      display: flex; justify-content: center;
+      gap: 0; overflow: hidden;
+    }
+    .strip-list {
+      display: flex; gap: 0; list-style: none;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .strip-list li {
+      padding: 4px 24px;
+      font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .strip-list li:last-child { border-right: none; }
+
+    /* ──────────────────────────────────────────
+       GALLERY
+    ────────────────────────────────────────── */
+    .gallery-sec {
+      max-width: 1320px; margin: 80px auto;
+      padding: 0 40px;
+    }
+    .sec-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 48px;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .sec-eyebrow {
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--red); font-weight: 500; margin-bottom: 10px;
+    }
+    .sec-h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.95; letter-spacing: 0.01em;
+    }
+    .sec-controls { display: flex; gap: 10px; }
+    .ctrl-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1.5px solid var(--border); background: #fff;
+      font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .ctrl-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+
+    .gallery-track-wrap { overflow: hidden; }
+    .gallery-track {
+      display: flex; gap: 20px;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .gallery-card {
+      flex-shrink: 0; width: 300px;
+      border-radius: 10px; overflow: hidden;
+      background: var(--warm);
+      position: relative;
+    }
+    .gallery-card img {
+      width: 100%; height: 360px; object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .gallery-card:hover img { transform: scale(1.06); }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 40px 18px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent);
+      color: #fff;
+    }
+    .gallery-caption h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px; letter-spacing: 0.06em;
+    }
+    .gallery-caption p { font-size: 12px; opacity: .7; margin-top: 2px; }
+
+    /* ──────────────────────────────────────────
+       WHY SECTION — bento grid
+    ────────────────────────────────────────── */
+    .why-sec {
+      background: var(--warm);
+      padding: 80px 0;
+    }
+    .why-inner {
+      max-width: 1320px; margin: auto; padding: 0 40px;
+    }
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+      margin-top: 52px;
+    }
+    .bento-card {
+      background: #fff; border-radius: 12px;
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .bento-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.07); }
+    .b1 { grid-column: 1/5; }
+    .b2 { grid-column: 5/9; }
+    .b3 { grid-column: 9/13; }
+    .b4 { grid-column: 1/7; background: var(--red); color: #fff; }
+    .b5 { grid-column: 7/13; }
+
+    .bento-icon { font-size: 32px; margin-bottom: 18px; }
+    .bento-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px; letter-spacing: 0.04em; margin-bottom: 10px;
+    }
+    .b4 h3 { color: #fff; }
+    .bento-card p { font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; }
+    .b4 p { color: rgba(255,255,255,0.75); }
+
+    .b4-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px; line-height: 1; color: rgba(255,255,255,0.15);
+      position: absolute; bottom: 16px; right: 24px;
+      pointer-events: none;
+    }
+    .b4 { position: relative; overflow: hidden; }
+
+    /* ──────────────────────────────────────────
+       PAYMENT SECTION
+    ────────────────────────────────────────── */
+    .pay-sec {
+      max-width: 1320px; margin: 80px auto;
+      padding: 0 40px;
+    }
+    .pay-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+    }
+    .pay-left h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 0.95; margin-bottom: 16px;
+    }
+    .pay-left p { color: var(--muted); font-size: 15px; line-height: 1.7; font-weight: 300; }
+    .pay-pills {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+    }
+    .pay-pill {
+      padding: 10px 20px; border-radius: 999px;
+      border: 1.5px solid var(--border);
+      font-size: 14px; font-weight: 500;
+      background: #fff;
+      transition: border-color .2s, background .2s;
+    }
+    .pay-pill:hover { border-color: var(--red); background: rgba(240,30,15,.04); }
+    .pay-visual {
+      background: var(--ink); border-radius: 16px;
+      padding: 44px; color: #fff;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .pay-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px; border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 15px; font-weight: 300;
+    }
+    .pay-row .pay-ico { font-size: 22px; width: 40px; text-align: center; }
+
+    /* ──────────────────────────────────────────
+       CTA / CONTACT
+    ────────────────────────────────────────── */
+    .cta-sec {
+      background: var(--ink);
+      padding: 100px 40px;
+    }
+    .cta-inner {
+      max-width: 1320px; margin: auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .cta-left {}
+    .cta-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); margin-bottom: 28px;
+    }
+    .cta-tag .dot-g { width: 7px; height: 7px; border-radius: 50%; background: var(--wa); animation: pulse 2s ease infinite; }
+    .cta-h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 7vw, 96px);
+      line-height: 0.9; color: #fff;
+    }
+    .cta-h2 .red { color: var(--red); }
+    .cta-sub { color: rgba(255,255,255,0.45); font-size: 15px; line-height: 1.7; font-weight: 300; margin-top: 24px; }
+
+    .cta-cards { display: flex; flex-direction: column; gap: 14px; }
+    .cta-card {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 24px; border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none; color: #fff;
+      transition: background .25s, transform .25s, border-color .25s;
+    }
+    .cta-card:hover {
+      background: rgba(37,211,102,0.1);
+      border-color: rgba(37,211,102,0.3);
+      transform: translateX(6px);
+    }
+    .cta-card-l { display: flex; align-items: center; gap: 16px; }
+    .cta-ava {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--green);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 17px; display: flex; align-items: center;
+      justify-content: center; color: #fff; flex-shrink: 0;
+    }
+    .cta-name { font-weight: 500; font-size: 15px; }
+    .cta-role { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .cta-wa-ico {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--wa);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cta-wa-ico svg { width: 18px; height: 18px; fill: #fff; }
+
+    /* ──────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────── */
+    .footer {
+      background: #0a0a0a;
+      padding: 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer img { height: 36px; opacity: 0.5; }
+    .footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+    /* ──────────────────────────────────────────
+       WA FLOAT
+    ────────────────────────────────────────── */
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 9999; }
+    .wa-popup {
+      display: none; flex-direction: column; gap: 2px;
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+      padding: 8px; margin-bottom: 12px;
+      min-width: 200px;
+      border: 1px solid var(--border);
+    }
+    .wa-popup.open { display: flex; animation: popUp .2s ease; }
+    @keyframes popUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .wa-popup-head { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 8px 10px 10px; }
+    .wa-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; border-radius: 8px;
+      text-decoration: none; color: var(--ink);
+      transition: background .15s;
+    }
+    .wa-link:hover { background: #f3f3f3; }
+    .wa-link .mini-av {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-family: 'Bebas Neue', sans-serif; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .wa-link-name { font-weight: 500; font-size: 13px; }
+    .wa-link-lbl { font-size: 11px; color: var(--muted); }
+    .wa-fab {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--wa); border: none; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(37,211,102,.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 10px 28px rgba(37,211,102,.5); }
+    .wa-fab svg { width: 26px; height: 26px; fill: #fff; }
+
+    /* ──────────────────────────────────────────
+       BACK TO TOP
+    ────────────────────────────────────────── */
+    #btt {
+      position: fixed; bottom: 28px; left: 28px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #fff; border: 1px solid var(--border);
+      font-size: 16px; cursor: pointer;
+      opacity: 0; visibility: hidden;
+      transition: all .3s; z-index: 999;
+      box-shadow: 0 4px 12px rgba(0,0,0,.07);
+    }
+    #btt.on { opacity: 1; visibility: visible; }
+    #btt:hover { background: var(--ink); color: #fff; }
+
+    /* ──────────────────────────────────────────
+       REVEAL ANIMATION
+    ────────────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ──────────────────────────────────────────
+       RESPONSIVE
+    ────────────────────────────────────────── */
+    @media(max-width:1024px){
+      .hero { grid-template-columns: 1fr; padding: 60px 24px 40px; }
+      .hero-right { display: none; }
+      .b1,.b2,.b3 { grid-column: span 6; }
+      .b4,.b5 { grid-column: span 12; }
+      .pay-inner { grid-template-columns: 1fr; }
+      .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media(max-width:640px){
+      .hero-h1 { font-size: 72px; }
+      .hero-stats { gap: 24px; }
+      .bento { display: flex; flex-direction: column; }
+      .gallery-sec,.why-inner,.pay-sec,.cta-inner { padding: 0 20px; }
+      .cta-sec { padding: 70px 20px; }
+      .footer { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; }
+      .strip { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">Kraft</span>
+    <span class="ticker-item"><b>Entrega para todo Brasil</b></span>
+    <span class="ticker-item">Artesanal</span>
+    <span class="ticker-item"><b>Até 6x sem juros</b></span>
+    <span class="ticker-item">Plástico</span>
+    <span class="ticker-item"><b>Atendimento humanizado</b></span>
+    <span class="ticker-item">Boutique</span>
+    <span class="ticker-item"><b>Impressão premium</b></span>
+    <span class="ticker-item">Condicional</span>
+    <span class="ticker-item"><b>+1000 clientes</b></span>
+    <span class="ticker-item">Delivery</span>
+    <span class="ticker-item"><b>Camiseta</b></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Kraft</span>
+    <span class="ticker-item"><b>Entrega para todo Brasil</b></span>
+    <span class="ticker-item">Artesanal</span>
+    <span class="ticker-item"><b>Até 6x sem juros</b></span>
+    <span class="ticker-item">Plástico</span>
+    <span class="ticker-item"><b>Atendimento humanizado</b></span>
+    <span class="ticker-item">Boutique</span>
+    <span class="ticker-item"><b>Impressão premium</b></span>
+    <span class="ticker-item">Condicional</span>
+    <span class="ticker-item"><b>+1000 clientes</b></span>
+    <span class="ticker-item">Delivery</span>
+    <span class="ticker-item"><b>Camiseta</b></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <img src="logoRA-removebg-preview.png" class="nav-logo" alt="R.A Sacolas">
+    <div class="nav-right">
+      <a href="https://www.instagram.com/sacolaspersonalizadas_r.a/" target="_blank" rel="noopener" class="nav-ig">
+        <svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 9A3.5 3.5 0 1 1 15.5 13 3.5 3.5 0 0 1 12 16.5zM18 6.75a1.25 1.25 0 1 1-1.25-1.25A1.25 1.25 0 0 1 18 6.75z"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://wa.me/5544984443735?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank" class="nav-cta">
+        <span>Orçamento</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left reveal">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      Atendimento disponível agora
+    </div>
+    <h1 class="hero-h1">
+      SUA<br>
+      <span class="red">MARCA</span><br>
+      <span class="outline">NA SACOLA</span>
+    </h1>
+    <p class="hero-sub">
+      Sacolas plásticas, papel Kraft, artesanal e condicionais com impressão de alta qualidade — cores fiéis à sua identidade visual, do pedido à entrega.
+    </p>
+    <div class="hero-btns">
+      <a href="catalogo.html" class="btn-red">Ver catálogo →</a>
+      <a href="#contato" class="btn-ghost">Falar com vendedor</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-n">1K+</div>
+        <div class="stat-l">Clientes atendidos</div>
+      </div>
+      <div>
+        <div class="stat-n">6X</div>
+        <div class="stat-l">Sem juros no cartão</div>
+      </div>
+      <div>
+        <div class="stat-n">BR</div>
+        <div class="stat-l">Entrega nacional</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right reveal" style="transition-delay:.18s">
+    <div class="hero-img-wrap">
+      <img src="logo-mocup.png" alt="Sacola personalizada" loading="lazy">
+    </div>
+    <div class="hero-pill">
+      <div class="ava">RA</div>
+      <div>
+        <div style="font-size:13px;font-weight:500">Pedido personalizado</div>
+        <div class="hero-pill-label">Envio em até 48h</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIAL STRIP -->
+<div class="strip">
+  <ul class="strip-list">
+    <li>Papel Kraft</li>
+    <li>Artesanal</li>
+    <li>Plástico</li>
+    <li>Boutique</li>
+    <li>Alça Fita</li>
+    <li>Condicional</li>
+    <li>Camiseta</li>
+    <li>Delivery</li>
+    <li>Vazada</li>
+  </ul>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-sec reveal">
+  <div class="sec-head">
+    <div>
+      <div class="sec-eyebrow">Nossos modelos</div>
+      <h2 class="sec-h2">Cada detalhe<br>na medida certa</h2>
+    </div>
+    <div class="sec-controls">
+      <button class="ctrl-btn prev" aria-label="Anterior">‹</button>
+      <button class="ctrl-btn next" aria-label="Próximo">›</button>
+    </div>
+  </div>
+  <div class="gallery-track-wrap">
+    <div class="gallery-track" id="gt">
+      <div class="gallery-card">
+        <img src="delivery3.jpeg" alt="Delivery / Kraft" loading="lazy">
+        <div class="gallery-caption"><h3>Delivery / Kraft</h3><p>Para restaurantes e e-commerce</p></div>
+      </div>
+      <div class="gallery-card">
+        <img src="alcafita5.jpeg" alt="Alça Fita" loading="lazy">
+        <div class="gallery-caption"><h3>Alça Fita</h3><p>Premium e elegante</p></div>
+      </div>
+      <div class="gallery-card">
+        <img src="vazada1.jpeg" alt="Plástica Vazada" loading="lazy">
+        <div class="gallery-caption"><h3>Plástica Vazada</h3><p>Resistente e personalizável</p></div>
+      </div>
+      <div class="gallery-card">
+        <img src="camiseta2.jpeg" alt="Camiseta" loading="lazy">
+        <div class="gallery-caption"><h3>Camiseta</h3><p>Custo-benefício imbatível</p></div>
+      </div>
+      <div class="gallery-card">
+        <img src="condicional2.jpeg" alt="Condicional" loading="lazy">
+        <div class="gallery-caption"><h3>Condicional</h3><p>Perfeita para provadores</p></div>
+      </div>
+      <div class="gallery-card">
+        <img src="artesanal1.jpeg" alt="Artesanal" loading="lazy">
+        <div class="gallery-caption"><h3>Artesanal</h3><p>Charme e exclusividade</p></div>
+      </div>
+      <div class="gallery-card">
+        <img src="krft1.jpeg" alt="Kraft Premium" loading="lazy">
+        <div class="gallery-caption"><h3>Kraft Premium</h3><p>Sustentável e sofisticado</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-sec">
+  <div class="why-inner">
+    <div class="reveal">
+      <div class="sec-eyebrow">Por que a R.A?</div>
+      <h2 class="sec-h2">Qualidade que<br>fala por si só</h2>
+    </div>
+    <div class="bento reveal">
+      <div class="bento-card b1">
+        <div class="bento-icon">🎨</div>
+        <h3>Impressão Premium</h3>
+        <p>Cores vivas e acabamento profissional. Sua identidade visual reproduzida com máxima fidelidade.</p>
+      </div>
+      <div class="bento-card b2">
+        <div class="bento-icon">🚚</div>
+        <h3>Entrega Nacional</h3>
+        <p>Envio seguro e rastreável para qualquer estado do Brasil. Seu pedido chega protegido e no prazo.</p>
+      </div>
+      <div class="bento-card b3">
+        <div class="bento-icon">🏪</div>
+        <h3>Para Lojistas</h3>
+        <p>Condições especiais para revenda e pedidos em grande volume. Fale conosco.</p>
+      </div>
+      <div class="bento-card b4">
+        <div class="bento-icon">⚡</div>
+        <h3>Atendimento Ágil e Humano</h3>
+        <p>Nada de robôs. Você fala direto com nossa equipe, que entende o que sua marca precisa.</p>
+        <div class="b4-big">RA</div>
+      </div>
+      <div class="bento-card b5">
+        <div class="bento-icon">🔒</div>
+        <h3>Pedido Seguro</h3>
+        <p>Do orçamento à entrega, acompanhamos todo o processo. Sua satisfação é nossa prioridade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="pay-sec reveal">
+  <div class="pay-inner">
+    <div class="pay-left">
+      <div class="sec-eyebrow">Pagamento</div>
+      <h2>Flexibilidade para fechar o pedido</h2>
+      <p>Oferecemos as formas de pagamento mais práticas e seguras para você não perder tempo.</p>
+      <div class="pay-pills">
+        <span class="pay-pill">💵 Dinheiro</span>
+        <span class="pay-pill">📱 Pix</span>
+        <span class="pay-pill">💳 Cartão até 6x</span>
+        <span class="pay-pill">🔗 Link de pagamento</span>
+      </div>
+    </div>
+    <div class="pay-visual">
+      <div style="font-size:14px;opacity:.4;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Formas de pagamento</div>
+      <div class="pay-row"><span class="pay-ico">💵</span>Dinheiro</div>
+      <div class="pay-row"><span class="pay-ico">📱</span>Pix — instantâneo</div>
+      <div class="pay-row"><span class="pay-ico">💳</span>Cartão de crédito até 6x sem juros</div>
+      <div class="pay-row"><span class="pay-ico">🔗</span>Link de pagamento seguro</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTATO -->
+<section class="cta-sec" id="contato">
+  <div class="cta-inner">
+    <div class="cta-left reveal">
+      <div class="cta-tag">
+        <span class="dot-g"></span>
+        Atendimento disponível
+      </div>
+      <h2 class="cta-h2">
+        SOLICITE<br>SEU<br>
+        <span class="red">ORÇAMENTO</span>
+      </h2>
+      <p class="cta-sub">
+        Fale diretamente com um de nossos vendedores e receba um orçamento personalizado. Sem complicação, sem espera.
+      </p>
+    </div>
+    <div class="cta-cards reveal" style="transition-delay:.15s">
+      <a class="cta-card" href="https://wa.me/5544984443735?text=Olá!%20Gostaria%20de%20um%20orçamento%20de%20sacolas%20personalizadas." target="_blank">
+        <div class="cta-card-l">
+          <div class="cta-ava">BR</div>
+          <div>
+            <div class="cta-name">Bruno</div>
+            <div class="cta-role">Vendedor · WhatsApp</div>
+          </div>
+        </div>
+        <div class="cta-wa-ico">
+          <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+        </div>
+      </a>
+      <a class="cta-card" href="https://wa.me/5544991048359?text=Olá!%20Gostaria%20de%20um%20orçamento%20de%20sacolas%20personalizadas." target="_blank">
+        <div class="cta-card-l">
+          <div class="cta-ava">RO</div>
+          <div>
+            <div class="cta-name">Robson</div>
+            <div class="cta-role">Vendedor · WhatsApp</div>
+          </div>
+        </div>
+        <div class="cta-wa-ico">
+          <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+        </div>
+      </a>
+      <a class="cta-card" href="https://wa.me/5544984543447?text=Olá!%20Gostaria%20de%20um%20orçamento%20de%20sacolas%20personalizadas." target="_blank">
+        <div class="cta-card-l">
+          <div class="cta-ava">BN</div>
+          <div>
+            <div class="cta-name">Bruna</div>
+            <div class="cta-role">Vendedora · WhatsApp</div>
+          </div>
+        </div>
+        <div class="cta-wa-ico">
+          <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <img src="logoRA-removebg-preview.png" alt="R.A Sacolas">
+  <p>© 2025 R.A Sacolas Personalizadas · Todos os direitos reservados<br>Desenvolvido por <strong style="color:rgba(255,255,255,.4)">MD Informática</strong></p>
+</footer>
+
+<!-- WA FLOAT -->
+<div class="wa-float">
+  <div class="wa-popup" id="wa-popup">
+    <div class="wa-popup-head">Fale com um vendedor</div>
+    <a class="wa-link" href="https://wa.me/5544984443735?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank">
+      <div class="mini-av">BR</div>
+      <div><div class="wa-link-name">Bruno</div><div class="wa-link-lbl">WhatsApp</div></div>
+    </a>
+    <a class="wa-link" href="https://wa.me/5544991048359?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank">
+      <div class="mini-av">RO</div>
+      <div><div class="wa-link-name">Robson</div><div class="wa-link-lbl">WhatsApp</div></div>
+    </a>
+    <a class="wa-link" href="https://wa.me/5544984543447?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank">
+      <div class="mini-av">BN</div>
+      <div><div class="wa-link-name">Bruna</div><div class="wa-link-lbl">WhatsApp</div></div>
+    </a>
+  </div>
+  <button class="wa-fab" id="wa-fab" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.87 1.02 1.04-3.76-.24-.39A9.97 9.97 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.46 1.07 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.57-.35z"/></svg>
+  </button>
+</div>
+
+<button id="btt" aria-label="Voltar ao topo">↑</button>
+
+<script>
+  // Nav shadow
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('shadowed', window.scrollY > 40);
+    document.getElementById('btt').classList.toggle('on', window.scrollY > 400);
+  });
+
+  // Carousel
+  const gt = document.getElementById('gt');
+  const cards = gt.querySelectorAll('.gallery-card');
+  let ci = 0;
+  const cardW = () => (cards[0] ? cards[0].offsetWidth + 20 : 320);
+  const maxIdx = () => Math.max(0, cards.length - Math.floor(gt.parentElement.offsetWidth / cardW()));
+
+  document.querySelector('.ctrl-btn.prev').addEventListener('click', () => {
+    if (ci > 0) ci--;
+    gt.style.transform = `translateX(-${ci * cardW()}px)`;
+  });
+  document.querySelector('.ctrl-btn.next').addEventListener('click', () => {
+    if (ci < maxIdx()) ci++;
+    gt.style.transform = `translateX(-${ci * cardW()}px)`;
+  });
+
+  // WA float
+  const wafab = document.getElementById('wa-fab');
+  const popup = document.getElementById('wa-popup');
+  wafab.addEventListener('click', () => popup.classList.toggle('open'));
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.wa-float')) popup.classList.remove('open');
+  });
+
+  // Back to top
+  document.getElementById('btt').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Reveal on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
